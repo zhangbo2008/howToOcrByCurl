@@ -88,13 +88,14 @@ class RBM(object):
 
 
 
-
+#pos 表示从 visible 到 hidden 层
+                # neg 表示反过来.
 
 
                 neg_visible_activations = np.dot(
                     pos_hidden_states, self.weights.T)
                 neg_visible_probs = self._logistic(neg_visible_activations)
-                neg_visible_probs[:, 0] = 1  # 强行把偏置的值重置为1
+                neg_visible_probs[:, 0] = 1  # 强行把偏置的值重置为1  #这个就是网络最后返回的预测的结果...为了跟data做比较,所以也需要跟data一样把第一列强制设置为1.
                 neg_hidden_activations = np.dot(
                     neg_visible_probs, self.weights)
                 neg_hidden_probs = self._logistic(neg_hidden_activations)
