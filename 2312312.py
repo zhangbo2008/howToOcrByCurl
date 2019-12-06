@@ -90,7 +90,7 @@ class RBM(object):
 
 #pos 表示从 visible 到 hidden 层
                 # neg 表示反过来.
-
+#所以整个步奏就是 先把 data pos传播再 neg传播.后算error
 
                 neg_visible_activations = np.dot(
                     pos_hidden_states, self.weights.T)
@@ -101,6 +101,7 @@ class RBM(object):
                 neg_hidden_probs = self._logistic(neg_hidden_activations)
                 # neg_hidden_states=neg_hidden_probs>np.random.rand(num_examples,self.num_hidden+1)
                 # neg_associations=np.dot(neg_visible_probs.T,neg_hidden_states)      #对隐藏层作二值化
+                #bp算法里面的梯度计算.  neg_hidden_activations 对 self.weights 的 导数.
                 neg_associations = np.dot(
                     neg_visible_probs.T, neg_hidden_probs)  # 对隐藏层不作二值化
 
