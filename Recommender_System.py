@@ -3,6 +3,14 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+
+'''
+受限boltzman 积
+'''
+
+
+
+
 # Load the movies dataset and also pass header=None since files don't contain any headers
 movies_df = pd.read_csv('ml-1m/movies.dat', sep='::', header=None, engine='python')
 print(movies_df.head())
